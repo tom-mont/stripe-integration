@@ -6,7 +6,7 @@ load_dotenv()
 
 
 def main():
-    # stripe.api_key = "sk_test_51Oxmi7P6DnIdemxySI00JjO422966sjJJjTKJTpvUA5OJPiNAwVGyFlN8gehfasFdp34HJgHcWTGj5257SNSIlLx009H88is3v"
+    # stripe.api_key = ""
     # stripe.Customer.create(
     # name="Jenny Rosen",
     # email="jennyrosen@example.com",
