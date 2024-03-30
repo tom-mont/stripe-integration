@@ -11,8 +11,10 @@ def main():
     stripe_customer = create_stripe_customer(
         "Tom Montgomery", "tom.b.montgomery@gmail.com")
 
-    result = create_stripe_price("ZAR", 1500, {"interval": "month"}, {
-                                 "name": "Price working"})
+    stripe_price = create_stripe_price("ZAR", 1500, {"interval": "month"}, {
+        "name": "Price working"})
+
+    result = attach_stripe_payment_method(stripe_customer)
 
     print(result)
 
