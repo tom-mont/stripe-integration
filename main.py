@@ -3,16 +3,18 @@ import stripe
 from dotenv import load_dotenv
 import os
 load_dotenv()
+stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 
 def main():
-    # stripe.api_key = ""
-    # stripe.Customer.create(
-    # name="Jenny Rosen",
-    # email="jennyrosen@example.com",
-    # )
-    # stripe.api_key = os.environ["STRIPE_API_KEY"]
-    print(os.getenv("STRIPE_API_KEY"))
+    print(os.getenv("STRIPE_CUSTOMER_ID"))
+
+
+def create_stripe_customer(name, email):
+    return stripe.Customer.create(
+        name="Tom Montgomery",
+        email="tom.b.montgomery@gmail.com",
+    )
 
 
 if __name__ == "__main__":
