@@ -6,6 +6,7 @@ stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 
 def create_stripe_customer(name, email):
+    # https://docs.stripe.com/api/customers/create
     return stripe.Customer.create(
         name=name,
         email=email,
@@ -23,32 +24,20 @@ def create_stripe_price(currency, unit_amongst, recurring, product_data):
 
 
 def attach_stripe_payment_method(customer_id):
+    # https://docs.stripe.com/api/payment_methods/attach
     return stripe.PaymentMethod.attach(
         "pm_card_visa",
-        # os.getenv("STRIPE_CUSTOMER_ID")
         customer=customer_id
     )
 
 
 def create_stripe_subscription(customer, currency, description, items, default_payment_method):
+    # https://docs.stripe.com/api/subscriptions/create
     return stripe.Subscription.create(
-        customer=customer,  # os.getenv("STRIPE_CUSTOMER_ID"),
-        currency=currency,  # ZAR
+        customer=customer,  
+        currency=currency, 
         items=items,  # must be an array of prices referencing a stripe price ID
         description=description,
         default_payment_method=default_payment_method
-        #     create_stripe_subscription(
-        #     os.getenv("STRIPE_CUSTOMER_ID"),
-        #     "ZAR",
-        #     "Testing",
-        #     [{"price": f'{os.getenv("STRIPE_PRICE_ID")}'}]
-        #     # add default_payment_method: STRIPE_PAYMENT_METHOD_ID
-        # )
     )
 
-# create_stripe_subscription(customer=os.getenv("STRIPE_CUSTOMER_ID"),
-#                                         currency="zar",
-#                                         description="Test",
-#                                         items=[
-#                                             {"price": f'{os.getenv("STRIPE_PRICE_ID")}'}],
-#                                         default_payment_method=os.getenv("STRIPE_PAYMENT_METHOD_ID"))
